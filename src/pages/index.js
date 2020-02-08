@@ -18,7 +18,7 @@ const IndexPage = ({ data }) => (
     />
 
     <Info />
-    <Menu items={data.Menu} />
+    <Menu items={data.menu} />
   </Layout>
 )
 
@@ -32,7 +32,7 @@ export const query = graphql`
       }
     }
 
-    Menu: allContentfulCoffeItem {
+    menu: allContentfulCoffeItem {
       edges {
         node {
           id
@@ -44,7 +44,7 @@ export const query = graphql`
           category
           image {
             fixed(width: 50, height: 50) {
-              ...GatsbyContentfulFixed_tracedSVG
+              src
             }
           }
         }
