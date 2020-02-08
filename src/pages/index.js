@@ -6,6 +6,7 @@ import SEO from "../components/seo"
 import BackgroundSection from "../components/globals/BackgroundSection"
 import BackgroundImage from "gatsby-background-image"
 import Info from "../components/Home/info"
+import Menu from "../components/Home/Menu"
 
 const IndexPage = ({ data }) => (
   <Layout>
@@ -17,6 +18,7 @@ const IndexPage = ({ data }) => (
     />
 
     <Info />
+    <Menu items={data.Menu} />
   </Layout>
 )
 
@@ -29,7 +31,26 @@ export const query = graphql`
         }
       }
     }
+
+    Menu: allContentfulCoffeItem {
+      edges {
+        node {
+          id
+          title
+          description {
+            description
+          }
+          price
+          category
+          image {
+            fixed(width: 50, height: 50) {
+              ...GatsbyContentfulFixed_tracedSVG
+            }
+          }
+        }
+      }
+    }
   }
 `
-
+/* ...GatsbyContentfulFixed_tracedSVG */
 export default IndexPage
